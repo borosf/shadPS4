@@ -4,7 +4,7 @@ SPDX-License-Identifier: GPL-2.0-or-later
 -->
 
 # shadPS4 Codebase Review Report
-**Date**: January 2026  
+**Date**: January 2025  
 **Reviewer**: Automated Code Review  
 **Repository**: borosf/shadPS4  
 **Codebase Size**: 741 C++ source files
@@ -127,7 +127,7 @@ memset(id_state, 0, sizeof(sizeof(int) * MAX_QUEUE));  // BUG: double sizeof!
 
 **Multiple Issues**:
 1. `malloc()` return value **never checked for null**
-2. `memset()` has a typo: `sizeof(sizeof(int) * MAX_QUEUE)` evaluates to `sizeof(size_t)` (8 bytes) instead of actual buffer size
+2. `memset()` has a critical bug: `sizeof(sizeof(int) * MAX_QUEUE)` takes the size of the expression `sizeof(int) * MAX_QUEUE` which is a `size_t` type (8 bytes on 64-bit), instead of the intended buffer size which would be `sizeof(int) * MAX_QUEUE` bytes
 3. `id_state` accessed throughout without null checks (31+ locations)
 
 **Impact**: 

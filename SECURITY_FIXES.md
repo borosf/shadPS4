@@ -6,7 +6,7 @@ SPDX-License-Identifier: GPL-2.0-or-later
 # Security Fixes Required for shadPS4
 
 **Priority**: CRITICAL  
-**Date**: January 2026
+**Date**: January 2025
 
 This document outlines specific security vulnerabilities that require immediate attention and provides concrete fix recommendations.
 
@@ -24,7 +24,7 @@ strcpy(ifr.ifr_name, it->ifr_name);
 
 **Fixed**:
 ```cpp
-strncpy(ifr.ifr_name, it->ifr_name, IFNAMSIZ - 1);
+strncpy(ifr.ifr_name, it->ifr_name, IFNAMSIZ);
 ifr.ifr_name[IFNAMSIZ - 1] = '\0';  // Ensure null termination
 ```
 
@@ -472,7 +472,7 @@ After applying these fixes:
 
 2. **Run Static Analysis**:
    ```bash
-   clang-tidy src/**/*.cpp -- -std=c++23
+   find src -name "*.cpp" -exec clang-tidy {} -- -std=c++23 \;
    cppcheck --enable=all --inconclusive src/
    ```
 

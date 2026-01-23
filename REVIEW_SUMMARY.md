@@ -6,7 +6,7 @@ SPDX-License-Identifier: GPL-2.0-or-later
 # Code Review Summary - shadPS4
 
 **Overall Grade**: B+ (Good)  
-**Date**: January 2026
+**Date**: January 2025
 
 ---
 
@@ -154,7 +154,7 @@ src/core/devtools/widget/common.h              (line 120-124)
 
 2. **Run Static Analysis**
    ```bash
-   clang-tidy src/**/*.cpp
+   find src -name "*.cpp" -exec clang-tidy {} \;
    cppcheck --enable=all src/
    ```
 
@@ -221,5 +221,5 @@ However, several **critical security vulnerabilities** require immediate attenti
 
 ---
 
-**Review Completed**: January 2026  
+**Review Completed**: January 2025  
 **Reviewer**: Automated Code Review System
